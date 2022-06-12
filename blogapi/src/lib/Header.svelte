@@ -2,10 +2,10 @@
 
 <body>
   <ul class="topnav">
-    <li><a class="active" href="#home">Home</a></li>
-    <li><a href="#news">News</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li class="right"><a href="#about">About</a></li>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/auth/login">Login</a></li>
+    <li><a href="/auth/register">Register</a></li>
+    <li class="right"><a href="/auth/logout">Logout</a></li>
   </ul>
 </body>
 

@@ -33,7 +33,7 @@ async function getData() {
     {/each}
   </div>
 {:catch error}
-	<p style="color: red">{error.message}</p>
+	<p style="color: red">{error}</p>
 {/await}
 
 
