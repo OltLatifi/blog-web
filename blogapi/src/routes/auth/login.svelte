@@ -14,11 +14,8 @@
       localStorage.setItem('access_token', result.data.access);
       localStorage.setItem('refresh_token', result.data.refresh);
 
-      let obj={
-        Authorization:`Bearer ${localStorage.getItem('access_token')}`
-      }
-      // add authorization to the headers
-      axiosInstance.defaults.headers=Object.assign(axiosInstance.defaults.headers, obj)
+      axiosInstance.defaults.headers['Authorization'] =
+        'Bearer ' + localStorage.getItem('access_token');
   })
     .then(result=>window.location.replace("http://127.0.0.1:3000/"))
 

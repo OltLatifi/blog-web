@@ -1,38 +1,18 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const baseURL = 'http://localhost:8000/api/'
-let authorization = ''
-
-let headers = {
-  'Content-Type': 'application/json',
-  accept: 'application/json',
-}
-
-if (typeof window !== 'undefined') {
-  if(localStorage.getItem('access_token')){
-    authorization = `Bearer ${localStorage.getItem('access_token')}`
-    let headers = {
-      Authorization: authorization,
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-    }
-  }else{
-    authorization=''
-    headers = {
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-    }
-  }
-}
+const baseURL = 'http://127.0.0.1:8000/api/';
 
 const axiosInstance = axios.create({
-  baseURL: baseURL,
-  timeout: 5000,
-  headers:headers,
-})
-
-
-
+	baseURL: baseURL,
+	timeout: 5000,
+	headers: {
+		Authorization: localStorage.getItem('access_token')
+			? 'Bearer ' + localStorage.getItem('access_token')
+			: null,
+		'Content-Type': 'application/json',
+		accept: 'application/json',
+	}, 
+});
 
 axiosInstance.interceptors.response.use(
 	(response) => {
@@ -78,10 +58,9 @@ axiosInstance.interceptors.response.use(
 						.then((response) => {
 							localStorage.setItem('access_token', response.data.access);
 							localStorage.setItem('refresh_token', response.data.refresh);
-              let obj={
-                Authorization:`Bearer ${response.data.access}`
-              }
-              axiosInstance.defaults.headers=Object.assign(axiosInstance.defaults.headers, obj)
+
+							axiosInstance.defaults.headers['Authorization'] =
+								'Bearer ' + response.data.access;
 							originalRequest.headers['Authorization'] =
 								'Bearer ' + response.data.access;
 
@@ -105,4 +84,4 @@ axiosInstance.interceptors.response.use(
 	}
 );
 
-export default axiosInstance
+export default axiosInstance;
