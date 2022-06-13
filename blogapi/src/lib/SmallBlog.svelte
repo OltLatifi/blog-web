@@ -5,15 +5,21 @@
 </script>
 
 <div class="small-container">
+  <a href={`/${title}/`}>
   <h3>
     {title}
   </h3>
   <p>{content}</p>
   <span>{date}</span>
+  </a>
 </div>
 
 
 <style>
+  a{
+    text-decoration: none;
+    color: black;
+  }
   .small-container {
     margin:4px;
     padding:0 12px;
