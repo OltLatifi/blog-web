@@ -15,13 +15,11 @@ async function getData() {
 	}
 	
 	let promise = getData();
-  console.log(promise);
 
 </script>
 
 
 
-<slot></slot>
 
 {#await promise}
 	<p>...waiting</p>
@@ -35,13 +33,3 @@ async function getData() {
 {:catch error}
 	<p style="color: red">{error}</p>
 {/await}
-
-
-<style>
-  .blog-row{
-    display:flex;
-    flex-wrap: wrap;
-    margin: 2%;
-
-  }
-</style>

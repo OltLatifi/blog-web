@@ -34,3 +34,9 @@ ul.topnav li.right {float: right;}
   ul.topnav li {float: none;}
 }
 
+.blog-row{
+  display:flex;
+  flex-wrap: wrap;
+  margin: 2%;
+
+}
