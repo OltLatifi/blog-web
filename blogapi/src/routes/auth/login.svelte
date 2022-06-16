@@ -22,13 +22,26 @@
   }
 </script>
 
+<div class="center">
+  <div class="container">
+    <h1>Log in</h1>
+    <div class="margin-m">
+      <label for="email">Email</label><br>
+      <input type="email" id="email" name="Email" bind:value={email}>
+    </div>
+    <div class="margin-m">
+      <label for="password">Password</label><br>
+      <input type="password" id="password" name="Password" bind:value={password}><br>
+    </div><br>
 
-<div style="margin-left:2%;">
-  <label for="email">Email:</label><br>
-  <input type="email" id="email" name="Email" bind:value={email}><br>
-
-  <label for="password">Password</label><br>
-  <input type="password" id="password" name="Password" bind:value={password}><br><br>
-
-  <button on:click={LogIn}>Login</button>
+    <button class="button" on:click={LogIn}>Login</button>
+  </div>
 </div>
+
+<style>
+  h1, input, label, button{
+    width:80%;
+    margin:0 10%;
+  }
+  
+</style>

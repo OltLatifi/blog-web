@@ -29,5 +29,6 @@
 
     width:20%;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border: 1px solid #ccc;
   }
 </style>

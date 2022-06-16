@@ -1,14 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
+button, input, select, textarea, label, select {
+  font-family: inherit;
+  font-size: 100%;
+  box-sizing: border-box;
 }
 
 ul.topnav {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0 2%;
   overflow: hidden;
   background-color: rgb(34, 34, 34);
 }
@@ -17,15 +26,13 @@ ul.topnav li {float: left;}
 
 ul.topnav li a {
   display: block;
-  color: white;
+  color: white; 
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
-ul.topnav li a:hover:not(.active) {background-color: #111;}
-
-ul.topnav li a.active {background-color: #474747;}
+ul.topnav li a:hover {background-color: #111;}
 
 ul.topnav li.right {float: right;}
 
@@ -37,6 +44,83 @@ ul.topnav li.right {float: right;}
 .blog-row{
   display:flex;
   flex-wrap: wrap;
-  margin: 2%;
+  margin: 0 2%;
 
+}
+
+.container{
+  padding:2rem;
+  padding-bottom:3rem;
+  width:40%;
+  min-width:8rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.center{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction:column;
+  margin-top:5%;
+}
+
+.margin-m{
+  margin-top: 2%;
+}
+
+.margin-l{
+  margin-top: 5%;
+}
+
+input, label, button, select{
+  min-height: 24px;
+  font-size:1.3em;  
+}
+input, select{
+  border: 1px solid black;
+  border-radius: 1px;
+}
+
+
+
+/* CSS */
+.button {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-size: 16px;
+  font-weight: 600;
+  height: 42px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:focus {
+  color: #171e29;
+}
+
+.button:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+.button:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
 }

@@ -57,27 +57,34 @@
 </script>
 
 
-
-<div>
-  <label for="title">Title:</label><br>
-  <input id="title" name="Title" bind:value={title}><br>
-  <label for="category">Category:</label><br>
+<div class="center">
+  <div class="container">
+    <h1>Filter</h1>
+    <div class="margin-m">
+      <label for="title">Title:</label><br>
+      <input id="title" name="Title" bind:value={title}><br>
+    </div>
+    <div class="margin-m">
+      <label for="category">Category:</label><br>
+      {#await promise}
+      <input id="category" list="categories" name="Categories" bind:value={category}><br>
+      {:then data_}
+        <select id="category" list="categories" name="Categories" bind:value={category}><br>
+          {#each data_ as data}
+            <option value={data.id}>{data.name}</option>
+          {/each}
+        </select>
+      {:catch error}
+        <p style="color: red">{error}</p>
+      {/await}
+    </div>
+    <br>
+    <button class="button" on:click={filter}>Filter</button>
   
-  {#await promise}
-  <input id="category" list="categories" name="Categories" bind:value={category}><br>
-  {:then data_}
-    <select id="category" list="categories" name="Categories" bind:value={category}><br>
-      {#each data_ as data}
-        <option value={data.id}>{data.name}</option>
-      {/each}
-    </select>
-  {:catch error}
-    <p style="color: red">{error}</p>
-  {/await}
-  <button on:click={filter}>Filter</button>
-
-
+  
+  </div>
 </div>
+
 
 {#if filtered}
 <div>
@@ -88,3 +95,12 @@
   </div>
 </div>
 {/if}
+
+
+<style>
+  h1, input, label, button, select{
+    width:80%;
+    margin-left:10%;
+  }
+  
+</style>

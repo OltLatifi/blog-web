@@ -5,8 +5,8 @@
   import "../styles/main.css" 
 </script>
 
-<Header/>
-<main>
+<body>
+  <Header/>
   <slot></slot>
-</main>
-<Footer/>
+  <Footer/>
+</body>
