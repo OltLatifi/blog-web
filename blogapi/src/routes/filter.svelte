@@ -14,7 +14,6 @@
 	}
 	
 	let promise = getData();
-  let author="";
   let title="";
   let category="";
   let blogPost=[];
@@ -90,7 +89,7 @@
 <div>
   <div class="blog-row">
     {#each blogPost as data}
-    <SmallBlog title={data.title} content={data.content} date={data.date}/>
+    <SmallBlog title={data.title} content={data.content} date={data.date.split("T")[0]}/>
     {/each}
   </div>
 </div>

@@ -8,4 +8,6 @@
 		localStorage.removeItem('access_token');
 		localStorage.removeItem('refresh_token');
 		axiosInstance.defaults.headers['Authorization'] = null;
+		{window.location.replace("http://127.0.0.1:3000/")}
+	
 </script>
