@@ -69,11 +69,3 @@
   
   </div>
 </div>
-
-<style>
-  h1, input, label, button{
-    width:80%;
-    margin-left:10%;
-  }
-  
-</style>

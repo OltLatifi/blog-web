@@ -2,10 +2,11 @@
   export let title="a title";
   export let content="a content";
   export let date="a date";
+  export let slug;
 </script>
 
 <div class="small-container">
-  <a href={`/${title}/`}>
+  <a href={`/${slug}/`}>
   <h3>
     {title}
   </h3>

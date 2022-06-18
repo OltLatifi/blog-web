@@ -24,8 +24,7 @@ async function getData() {
 {:then data_}
   <div class="blog-row">
     {#each data_ as data}
-    <!-- {console.log(data)} -->
-    <SmallBlog title={data.title} content={data.content} date={data.date.split("T")[0]}/>
+    	<SmallBlog slug={data.slug} title={data.title} content={data.content} date={data.published.split("T")[0]}/>
     {/each}
   </div>
 {:catch error}

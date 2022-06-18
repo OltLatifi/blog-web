@@ -1,7 +1,7 @@
 <script>
   import axiosInstance from "../../utils/axios"
   
-  const URL = "http://localhost:8000/api/edit/postdetail/"
+  const URL = "edit/postdetail/"
   async function getData() {
     const res = await axiosInstance.get(URL)
     const data = await res.data
@@ -10,6 +10,13 @@
 	}
 	
 	let promise = getData();
+
+
+  const deleteData =(slug)=>{
+    axiosInstance.delete(`delete/${slug}/`)
+    promise = getData();
+    promise = getData();
+  }
 </script>
 
 <div class="container dimensions">
@@ -31,18 +38,15 @@
       {#each data_ as data}
       <tr>
         <td>
-          <a href={`/${data.title}/`}>
+          <a href={`/${data.slug}/`}>
             {data.title}
           </a>
         </td>
-        <td>{data.date.split("T")[0]}</td>
+        <td>{data.published.split("T")[0]}</td>
         <!-- capitalises -->
         <td>{data.status.charAt(0).toUpperCase() + data.status.slice(1)}</td>
-        <td><button class="button edit" title="Edit">✎</button> <button class="button delete" title="Delete">&#x1F5D1</button>
-          <!-- if the post is a draft ad an option to publish -->
-          {#if data.status.charAt(0).toUpperCase()==="D"}
-            <button class="button publish" title="Publish">☑</button>
-          {/if}
+        <td><a href={`/${data.slug}/edit`} id="edit" class="button edit" title="Edit">✎</a>
+          <button on:click={()=>deleteData(data.slug)} id="delete" class="button delete" title="Delete">&#x1F5D1</button>
         </td>
       </tr>
       {/each}
@@ -86,7 +90,7 @@
     width:40%;
   }
 
-  button{
+  #edit, #delete{
     width:50px;
     margin: 2px 0;
   }
@@ -98,10 +102,5 @@
   .delete{
     border: 1px solid rgb(193, 69, 69);
     color: rgb(193, 69, 69);
-  }
-
-  .publish{
-    border: 1px solid green;
-    color: green;
   }
 </style>

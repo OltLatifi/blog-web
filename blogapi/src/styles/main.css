@@ -72,15 +72,19 @@ ul.topnav li.right {float: right;}
   margin-top: 5%;
 }
 
-input, label, button, select{
+input, label, button, select, textarea{
   min-height: 24px;
   font-size:1.3em;  
 }
-input, select{
+input, select, textarea{
   border: 1px solid black;
   border-radius: 1px;
 }
-
+h1, input, label, button, textarea, select, option{
+  width:80%;
+  margin:0 10%;
+  resize: vertical;
+}
 
 
 /* CSS */

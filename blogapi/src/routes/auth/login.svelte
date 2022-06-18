@@ -37,11 +37,3 @@
     <button class="button" on:click={LogIn}>Login</button>
   </div>
 </div>
-
-<style>
-  h1, input, label, button{
-    width:80%;
-    margin:0 10%;
-  }
-  
-</style>
