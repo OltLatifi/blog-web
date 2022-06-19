@@ -1,15 +1,21 @@
 <script>
+  import { quill } from 'svelte-quill'
+	import fs from 'fs';
   import axiosInstance from "../utils/axios"
   import jwt_decode from "jwt-decode";
   
+	let options = { placeholder: "Write something from outside...", }
   let token = localStorage.getItem('access_token')
   let decoded = jwt_decode(token)
 
   let title=""
   let excerpt=""
-  let content=""
   let status=""
   let category;
+  let image;
+
+	let content = { html: '', text: ''};
+
   // turns Olt Latifi into olt-latifi
   $: slug = title.replace(/\s+/g, '-').toLowerCase();
 
@@ -28,26 +34,36 @@
   let promise = getCategories();
 
   const Submit =()=>{
-    console.log(category)
-    // })
+    // console.log(image[0].name)
     axiosInstance.post('create/', {
       category: category,
       title: title,
       author: decoded.user_id,
+      image: image[0],
       excerpt: excerpt,
-      content: content,
+      content: content.html,
       status: status,
       slug: slug,
       published:"2022-06-18T15:10:25.355111Z"
-    })
+    }, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    }
+    )
     .then(result=>window.location.replace("/"))
 
   }
 </script>
 
+<svelte:head>
+	<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</svelte:head>
+
 <div class="center">
   <div class="container">
     <h1>Create</h1>
+    
     <div class="margin-m">
       <label for="title">Title</label><br>
       <input id="title" name="Title" bind:value={title}>
@@ -60,7 +76,6 @@
       {:then data_}
         <select id="category" list="categories" name="Categories" bind:value={category}><br>
           {#each data_ as data}
-          {console.log(`${data.id} | ${data.name}`)}
           <option value={data.id}>{data.name}</option>
           {/each}
         </select>
@@ -77,13 +92,24 @@
     </div>
 
     <div class="margin-m">
+      <label for="image-lbl">Image</label><br>
+      <label for="image-upload" id="image-lbl" class="button">
+        Upload image
+        <input id="image-upload" type="file" accept="image/*" name="Image" bind:files={image}>
+      </label>
+    </div>
+
+    <div class="margin-m">
       <label for="excerpt">Excerpt</label><br>
       <textarea type="password" id="excerpt" name="Excerpt" bind:value={excerpt}></textarea><br>
     </div>
 
     <div class="margin-m">
       <label for="content">Content</label><br>
-      <textarea type="content" id="content" name="Content" bind:value={content}></textarea><br>
+      <div class="quill-container">
+        <div class="quill" use:quill={options} on:text-change={e => content = e.detail}/>
+      </div>
+      <!-- <textarea type="content" id="content" name="Content" bind:value={content}></textarea><br> -->
     </div>
     
     <div class="margin-m">
@@ -93,7 +119,24 @@
 </div>
 <br>
 <style>
-  #content {
-    height:150px;
+  .quill-container{
+    width:80%;
+    margin:0 10%;
+    /* resize: vertical; */
+    border: 1px solid black;
+    border-radius: 1px;
+  }
+
+  .quill{
+    width:100%;
+  }
+  #image-upload{
+    display: none;
+  }
+
+  #image-lbl{
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 1px;
   }
 </style>

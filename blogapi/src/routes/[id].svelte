@@ -23,6 +23,7 @@
 <div>
   {post.title}
   {post.excerpt}
-  {post.content}
+  {console.log(post.content)}
+  {@html post.content}
   {post.status}
 </div>
