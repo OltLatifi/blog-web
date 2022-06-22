@@ -20,10 +20,32 @@
   export let post;
 </script>
 
-<div>
-  {post.title}
-  {post.excerpt}
-  {console.log(post.content)}
-  {@html post.content}
-  {post.status}
+<div class="container detailview">
+  <div class="content">
+    <img src={post.image} alt="Blog related">
+    <h1>{post.title}</h1>
+    {@html post.content}
+  </div>
 </div>
+
+
+<style>
+  .detailview {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin:2%;
+  }
+  .content{
+    width:70%;
+    margin:0 15%;
+  }
+  img{
+    aspect-ratio:16/9;
+    width:100%;
+  }
+  h1{
+    margin:0;
+    font-size:2.5em;
+  }
+</style>

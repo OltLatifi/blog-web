@@ -1,5 +1,5 @@
 <script>
-  import axiosInstance from "../../utils/axios"
+  import axiosInstance from "../../../utils/axios"
 
 
   const response = axiosInstance.post('user/logout/blacklist/', {
@@ -8,6 +8,6 @@
 		localStorage.removeItem('access_token');
 		localStorage.removeItem('refresh_token');
 		axiosInstance.defaults.headers['Authorization'] = null;
-		{window.location.replace("http://127.0.0.1:3000/")}
+		{window.location.replace("http://127.0.0.1:3000/home")}
 	
 </script>

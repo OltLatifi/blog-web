@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+:root{
+  --color-primary: #2e2e2e;
+  --color-secondary: #fff;
+  --color-extra: #ccc;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  /* outline: 4px solid #ccc; */
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.4;
+  color:black;
+}
+
+body::after {
+  content: "";
+  background: url(images/background.jpg);
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+a{
+  color: black;
+  /* text-decoration: none; */
+}
+
+ul{
+  list-style: none;
+}
+
+p{
+  margin: 5px 0;
+  line-height:1.7;
+}
+
+
+
+/* navbar */
+.navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  padding: 20px 5%;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.6) 0px 2px 8px 0px;
+}
+
+.navbar-right{
+  width: 50%;
+}
+
+.right{
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content:flex-end;
+}
+
+
+.right-child{
+  margin:0 4%;
+  font-size: 110%;
+}
+
+.main-container{
+  /* width:80%; */
+  max-width: 1000px;
+  margin: 5% auto;
+}
+
+.margin{
+ margin: 0 4%;
+}
+
+.sublime-text{
+  font-size: 400%;
+  text-shadow: 1px 1px 2px rgba(99, 99, 99, 0.6);
+  
+}
+
+.main-paragraps{
+  width: 100%;
+  font-size: 120%;
+  font-weight: 600;
+}
+
+.paragraph{
+  border-radius: 15px;
+  background-color:white;
+  box-shadow: rgba(99, 99, 99, 0.6) 0px 2px 8px 0px;
+  padding:2%;
+}
+
+@media screen and (max-width: 768px) {
+  .sublime-text{
+    margin: 0 10%;
+
+    font-size: 250%;
+    text-shadow: 1px 1px 2px rgba(99, 99, 99, 0.6);
+  }
+
+  .main-paragraps{
+    margin: 0 10%;
+    width: 80%;
+    font-size: 95%;
+    font-weight: 600;
+  }
+
+  .margin{
+    margin: 0;
+   }
+}
+
+
+
+/* svg */
+.custom-shape-divider-bottom-1655914680 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1655914680 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 118px;
+}
+
+.custom-shape-divider-bottom-1655914680 .shape-fill {
+  fill: rgba(131, 131, 131, 0.9);
+}

@@ -1,7 +1,6 @@
 <script>
   import { quill } from 'svelte-quill'
-	import fs from 'fs';
-  import axiosInstance from "../utils/axios"
+  import axiosInstance from "../../utils/axios"
   import jwt_decode from "jwt-decode";
   
 	let options = { placeholder: "Write something from outside...", }
@@ -34,24 +33,51 @@
   let promise = getCategories();
 
   const Submit =()=>{
-    // console.log(image[0].name)
-    axiosInstance.post('create/', {
-      category: category,
-      title: title,
-      author: decoded.user_id,
-      image: image[0],
-      excerpt: excerpt,
-      content: content.html,
-      status: status,
-      slug: slug,
-      published:"2022-06-18T15:10:25.355111Z"
-    }, {
-      headers: {
-        "Content-Type": "multipart/form-data",
+
+    if(title!==""){
+      if(status!==""){
+        if(excerpt!==""){
+          if(content.html!==""){
+            if(image){
+              axiosInstance.post('create/', {
+              category: category,
+              title: title,
+              author: decoded.user_id,
+              image: image[0],
+              excerpt: excerpt,
+              content: content.html,
+              status: status,
+              slug: slug,
+              published:"2022-06-18T15:10:25.355111Z"
+            })
+            .then(result=>window.location.replace("/home"))
+            } else{
+              axiosInstance.post('create/', {
+              category: category,
+              title: title,
+              author: decoded.user_id,
+              excerpt: excerpt,
+              content: content.html,
+              status: status,
+              slug: slug,
+              published:"2022-06-18T15:10:25.355111Z"
+            })
+            .then(result=>window.location.replace("/home"))
+            }
+            
+
+          }else{
+            alert("Please enter the blog content")
+          }
+        }else{
+          alert("Please enter an excerpt")
+        }
+      }else{
+        alert("Please select status")
       }
+    }else{
+      alert("Please enter a title")
     }
-    )
-    .then(result=>window.location.replace("/"))
 
   }
 </script>
@@ -93,15 +119,22 @@
 
     <div class="margin-m">
       <label for="image-lbl">Image</label><br>
-      <label for="image-upload" id="image-lbl" class="button">
-        Upload image
-        <input id="image-upload" type="file" accept="image/*" name="Image" bind:files={image}>
-      </label>
+      {#if !image}
+        <label for="image-upload" id="image-lbl" class="button">
+          Upload image
+          <input id="image-upload" type="file" accept="image/*" name="Image" bind:files={image}>
+        </label>
+      {:else}
+        <label for="image-upload" id="image-lbl" class="button">
+          {image[0].name}
+          <input id="image-upload" type="file" accept="image/*" name="Image" bind:files={image}>
+        </label>
+      {/if}
     </div>
 
     <div class="margin-m">
       <label for="excerpt">Excerpt</label><br>
-      <textarea type="password" id="excerpt" name="Excerpt" bind:value={excerpt}></textarea><br>
+      <textarea type="password" id="excerpt" name="Excerpt" maxlength="10000" bind:value={excerpt}></textarea><br>
     </div>
 
     <div class="margin-m">

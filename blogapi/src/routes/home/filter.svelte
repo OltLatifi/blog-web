@@ -89,7 +89,7 @@
 <div>
   <div class="blog-row">
     {#each blogPost as data}
-    <SmallBlog slug={data.slug} title={data.title} content={data.content} date={data.published.split("T")[0]}/>
+    <SmallBlog slug={data.slug} title={data.title} content={data.content} image={data.image}/>
     {/each}
   </div>
 </div>

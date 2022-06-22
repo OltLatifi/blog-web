@@ -1,5 +1,5 @@
 <script>
-  import axiosInstance from "../../utils/axios"
+  import axiosInstance from "../../../utils/axios"
   import jwt_decode from "jwt-decode";
   // prej context="module"
   export let data;
@@ -9,6 +9,7 @@
   let decoded = jwt_decode(token)
 
   let title=data.title
+  let image = data.image
   let excerpt=data.excerpt
   let content=data.content
   let status=data.status
@@ -31,27 +32,48 @@
   let promise = getCategories();
   
 
-  const Submit =(slug, published)=>{
-    axiosInstance.put(`edit/${slug}/`, {
-      category: category,
-      title: title,
-      author: decoded.user_id,
-      excerpt: excerpt,
-      content: content,
-      status: status,
-      slug: newSlug,
-      published: published
-    })
-    .then(result=>window.location.replace("/"))
+  const Submit =(slug)=>{
+    if(title!==""){
+      if(status!==""){
+        if(excerpt!==""){
+          if(content!==""){
+            let data = new FormData();
+            data.append('title', title);
+            data.append('category', category);
+            data.append('status', status);
+            data.append('excerpt', excerpt);
+            data.append('content', content);
+            data.append('slug', newSlug);
+            data.append('published', '2022-06-18T13:57:22.732328Z');
+            data.append('author', decoded.user_id);
+            // if a new image is uploaded
+            if(typeof image ==='object') {
+              data.append('image', image[0])
+            }
+            axiosInstance.put(`edit/${slug}/`, data)
+            .then(result=>window.location.replace("/home/admin/posts"))
+          }else{
+            alert("Please enter the blog content")
+          }
+        }else{
+          alert("Please enter an excerpt")
+        }
+      }else{
+        alert("Please select status")
+      }
+    }else{
+      alert("Please enter a title")
+    }
+
 
   }
 </script>
 
 <script context="module">
 
-  export async function load({fetch, params}) {
+  export async function load({params}) {
     const slug = params.id;
-    const response = await axiosInstance.get(`edit/${slug}/`)
+    const response = await axiosInstance.get(`${slug}/`)
     const data = await response.data
     if(response.status===200) {
       return{
@@ -98,6 +120,21 @@
     </div>
 
     <div class="margin-m">
+      <label for="image-lbl">Image</label><br>
+      {#if !image}
+        <label for="image-upload" id="image-lbl" class="button">
+          Upload image
+          <input id="image-upload" type="file" accept="image/*" name="Image" bind:files={image}>
+        </label>
+      {:else}
+        <label for="image-upload" id="image-lbl" class="button">
+          Image uploaded
+          <input id="image-upload" type="file" accept="image/*" name="Image" bind:files={image}>
+        </label>
+      {/if}
+    </div>
+
+    <div class="margin-m">
       <label for="excerpt">Excerpt</label><br>
       <textarea type="password" id="excerpt" name="Excerpt" bind:value={excerpt}></textarea><br>
     </div>
@@ -108,13 +145,19 @@
     </div>
     
     <div class="margin-m">
-      <button class="button" on:click={()=>Submit(data.slug, data.published)}>Submit</button>
+      <button class="button" on:click={()=>Submit(data.slug)}>Submit</button>
     </div>
   </div>
 </div>
 <br>
 <style>
-  #content {
-    height:150px;
+  #image-upload{
+    display: none;
+  }
+
+  #image-lbl{
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 1px;
   }
 </style>

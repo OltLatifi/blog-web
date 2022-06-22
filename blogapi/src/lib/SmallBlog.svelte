@@ -1,19 +1,17 @@
 <script>
   export let title="a title";
-  export let excerpt="an excerpt";
-  export let date="a date";
+  export let category="A category";
   export let image;
   export let slug;
 </script>
 
 <div class="small-container">
-  <img src={image} alt="Blog related">
-  <a href={`/${slug}/`}>
+  <img src={image} alt="Blog related" loading="lazy">
+  <a href={`/home/${slug}/`}>
   <h3>
     {title}
   </h3>
-  <p>{excerpt}</p>
-  <span>{date}</span>
+  <p>{category}</p>
   </a>
 </div>
 
@@ -42,7 +40,7 @@
     /* big screen */
     .small-container {
     margin:0.5%;
-    flex-basis: 18rem;
+    flex-basis: 24rem;
     border: 1px solid black;
     flex-grow: 1;
     flex-shrink: 0;
@@ -59,5 +57,6 @@
     width:50%;
     max-width: 11rem;
     overflow: hidden;
+    object-fit: cover;
   }
 </style>

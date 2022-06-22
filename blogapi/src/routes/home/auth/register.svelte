@@ -1,5 +1,5 @@
 <script>
-  import axiosInstance from "../../utils/axios"
+  import axiosInstance from "../../../utils/axios"
 
   let email_="";
   let username="";
@@ -25,7 +25,7 @@
           password: password,
           })
           .then(result=>console.log(result.status))
-          .then(result=>window.location.replace("http://127.0.0.1:3000/auth/login/"))
+          .then(result=>window.location.replace("http://127.0.0.1:3000/home/auth/login/"))
           .catch(error => {
             if(error.response.status ===400){
               alert("Your email and username should be unique. They are already taken.")

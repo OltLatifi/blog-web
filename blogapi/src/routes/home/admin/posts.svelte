@@ -1,5 +1,5 @@
 <script>
-  import axiosInstance from "../../utils/axios"
+  import axiosInstance from "../../../utils/axios"
   
   const URL = "edit/postdetail/"
   async function getData() {
@@ -38,14 +38,14 @@
       {#each data_ as data}
       <tr>
         <td>
-          <a href={`/${data.slug}/`}>
+          <a href={`/home/${data.slug}/`}>
             {data.title}
           </a>
         </td>
         <td>{data.published.split("T")[0]}</td>
         <!-- capitalises -->
         <td>{data.status.charAt(0).toUpperCase() + data.status.slice(1)}</td>
-        <td><a href={`/${data.slug}/edit`} id="edit" class="button edit" title="Edit">✎</a>
+        <td><a href={`/home/${data.slug}/edit`} id="edit" class="button edit" title="Edit">✎</a>
           <button on:click={()=>deleteData(data.slug)} id="delete" class="button delete" title="Delete">&#x1F5D1</button>
         </td>
       </tr>
@@ -54,7 +54,7 @@
       
     </table>
   {:catch error}
-    {window.location.replace("http://127.0.0.1:3000/admin/redirect")}
+    {window.location.replace("/home/admin/redirect")}
   {/await}
 </div>
 

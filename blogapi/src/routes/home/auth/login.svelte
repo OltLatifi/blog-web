@@ -1,5 +1,5 @@
 <script>
-  import axiosInstance from "../../utils/axios"
+  import axiosInstance from "../../../utils/axios"
 
   let email="";
   let password="";
@@ -17,7 +17,7 @@
       axiosInstance.defaults.headers['Authorization'] =
         'Bearer ' + localStorage.getItem('access_token');
   })
-    .then(result=>window.location.replace("http://127.0.0.1:3000/"))
+    .then(result=>window.location.replace("http://127.0.0.1:3000/home/"))
 
   }
 </script>
