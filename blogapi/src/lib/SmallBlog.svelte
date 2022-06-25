@@ -1,6 +1,7 @@
 <script>
   export let title="a title";
-  export let category="A category";
+  export let excerpt;
+  export let date;
   export let image;
   export let slug;
 </script>
@@ -11,7 +12,8 @@
   <h3>
     {title}
   </h3>
-  <p>{category}</p>
+  <p>{excerpt}</p>
+  <p>{date}</p>
   </a>
 </div>
 
@@ -21,19 +23,22 @@
     text-decoration: none;
     color: black;
   }
+
+  h3, p{
+    padding:8px;
+  }
   
   .small-container {
     margin:1%;
     /* padding:0 12px; */
     flex-basis: 18rem;
-    border: 1px solid black;
     flex-grow: 1;
     flex-shrink: 0;
     max-width:98%;
 
     display:flex;
     flex-direction: row;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 6px;
   }
 
   @media only screen and (min-width: 650px) {
@@ -41,22 +46,23 @@
     .small-container {
     margin:0.5%;
     flex-basis: 24rem;
-    border: 1px solid black;
     flex-grow: 1;
     flex-shrink: 0;
     max-width:49%;
 
     display:flex;
     flex-direction: row;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 1px 2px 6px;
   }
   }
 
   img{
     aspect-ratio: 1 / 1;
-    width:50%;
-    max-width: 11rem;
+    min-width:46%;
+    max-width: 46%;
+    margin: 2%;
     overflow: hidden;
     object-fit: cover;
+    /* filter:grayscale(1); */
   }
 </style>

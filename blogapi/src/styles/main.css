@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
+/* *{
+  outline: 3px solid aqua;
+} */
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: white;
+}
+
+body::after{
+  background: transparent;
 }
 
 button, input, select, textarea, label, select {
@@ -15,38 +22,54 @@ button, input, select, textarea, label, select {
   box-sizing: border-box;
 }
 
-ul.topnav {
-  list-style-type: none;
-  margin: 0;
-  padding: 0 2%;
-  overflow: hidden;
-  background-color: rgb(34, 34, 34);
+.navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  padding: 20px 5%;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.6) 0px 2px 5px 0px;
+  font-size: 95%;
 }
 
-ul.topnav li {float: left;}
+.navbar-right{
+  width: 80%;
+}
 
-ul.topnav li a {
-  display: block;
-  color: white; 
-  text-align: center;
-  padding: 14px 16px;
+.right{
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content:flex-end;
+}
+
+
+.right-child{
+  margin: 2px 4%;
+  font-size: 120%;
+}
+
+.left{
+  width:20%;
   text-decoration: none;
+
 }
 
-ul.topnav li a:hover {background-color: #111;}
+.left h1{
+  margin: 0;
+}
 
-ul.topnav li.right {float: right;}
-
-@media screen and (max-width: 600px) {
-  ul.topnav li.right, 
-  ul.topnav li {float: none;}
+a{
+  text-decoration: none;
 }
 
 .blog-row{
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 0 2%;
+  margin: 2%;
 
 }
 

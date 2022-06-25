@@ -31,6 +31,10 @@ body::after {
   z-index: -1;   
 }
 
+body::after:hover{
+  filter: blur(4px);
+}
+
 a{
   color: black;
   /* text-decoration: none; */
@@ -103,6 +107,15 @@ p{
   background-color:white;
   box-shadow: rgba(99, 99, 99, 0.6) 0px 2px 8px 0px;
   padding:2%;
+  border-left: 6px solid #783f2c;
+  /* border-bottom: 6px solid brown; */
+  transition:  0.2s;
+
+}
+
+.paragraph:hover{
+  border-left: 0;
+  padding-left: -6px;
 }
 
 @media screen and (max-width: 768px) {
@@ -142,9 +155,9 @@ p{
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 118px;
+  height: 100px;
 }
 
 .custom-shape-divider-bottom-1655914680 .shape-fill {
-  fill: rgba(131, 131, 131, 0.9);
+  fill: #783f2c;
 }

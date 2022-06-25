@@ -24,7 +24,7 @@
   {:then data_}
     <div class="blog-row">
       {#each data_ as data}
-        <SmallBlog slug={data.slug} title={data.title} category={data.category_} image={data.image}/>
+        <SmallBlog slug={data.slug} title={data.title} excerpt={data.excerpt} image={data.image} date={data.published.split("T")[0]}/>
       {/each}
     </div>
   {:catch error}

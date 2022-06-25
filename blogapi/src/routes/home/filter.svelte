@@ -55,6 +55,7 @@
 
 </script>
 
+{#if !filtered}
 
 <div class="center">
   <div class="container">
@@ -84,13 +85,26 @@
   </div>
 </div>
 
+{:else}
 
-{#if filtered}
+
 <div>
+  <button id="filter-again" class="button" on:click={()=>filtered=false}>Filter again.</button>
   <div class="blog-row">
     {#each blogPost as data}
-    <SmallBlog slug={data.slug} title={data.title} content={data.content} image={data.image}/>
+    <SmallBlog slug={data.slug} title={data.title} excerpt={data.excerpt} image={data.image} date={data.published.split("T")[0]}/>
     {/each}
   </div>
 </div>
+
 {/if}
+
+
+<style>
+  #filter-again{
+    width:50%;
+    margin-top: 3%;
+    margin-bottom: 0;
+    margin-left: 3%;
+  }
+</style>
